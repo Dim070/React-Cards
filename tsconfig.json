@@ -1,0 +1,48 @@
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "strict": true,
+      "target": "ES2020",
+      "module": "ES2020",
+      "outDir": "dist",
+      "baseUrl": "./",
+      "allowSyntheticDefaultImports": true,
+      "allowUmdGlobalAccess": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "moduleResolution": "Node",
+      "sourceMap": true,
+      "typeRoots": [
+        "node_modules/@types"
+      ],
+      "paths": {
+        "@root/*": [
+          "./src/*"
+        ],
+        "@icons/*": [
+          "./src/assets/icons/*"
+        ],
+        "@scss/*": [
+          "./src/assets/scss/*"
+        ],
+        "@images/*": [
+          "./src/assets/images/*"
+        ]
+      },
+      "types": [
+        "node"
+      ]
+    },
+    "lint-staged": {
+      "concurrent": false
+    },
+    "exclude": [
+      "./node_modules",
+      "./dist",
+      "./webpack"
+    ],
+    "include": [
+      "./src/**/*",
+      "./declarations.d.ts"
+    ]
+  }

@@ -1,0 +1,33 @@
+@import "src/assets/scss/_variable.scss";
+
+.card {
+  width: 300px;
+  height: 405px;
+  @media (max-width: $tabletSize) {
+    width: 400px;
+
+  }
+  @media (max-width: $mobileSize) {
+    width: 80%;
+  }
+}
+
+.trash {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: $martinique;
+  padding: 3px;
+  border-radius: 4px;
+  opacity: 0.8;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+  &:active {
+    background: $jade;
+  }
+}

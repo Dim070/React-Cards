@@ -1,0 +1,28 @@
+@import "src/assets/scss/_variable.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  &:focus-visible {
+    outline: 1px solid $manatee;
+    border-color: $manatee;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+
+
