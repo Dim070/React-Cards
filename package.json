@@ -1,15 +1,16 @@
 {
-  "name": "hsm-frontend",
+  "name": "react-cards",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://dim070.github.io/React-Cards/",
   "scripts": {
     "start": "webpack-dev-server --host localhost --config ./webpack/dev.js --no-client-overlay",
     "build": "webpack --config ./webpack/prod.js",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "eslint:fix": "eslint \"./src/**/{*.ts,*.tsx}\" --fix",
-    "storybook": "start-storybook",
-    "build-storybook": "build-storybook -s public"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
