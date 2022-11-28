@@ -19,8 +19,6 @@
     "@mui/material": "^5.10.15",
     "@mui/styled-engine-sc": "^5.10.14",
     "@redux-devtools/extension": "^3.2.3",
-    "styled-components": "^5.3.6",
-
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
@@ -49,6 +47,7 @@
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "sass-loader": "^13.0.2",
+    "styled-components": "^5.3.6",
     "typescript": "^4.6.3"
   },
   "eslintConfig": {
@@ -80,7 +79,6 @@
     ]
   },
   "devDependencies": {
-
     "@svgr/webpack": "^6.2.1",
     "@types/react-redux": "^7.1.23",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
@@ -103,6 +101,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.2.0",
+    "gh-pages": "^4.0.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
     "node-sass": "^7.0.1",
