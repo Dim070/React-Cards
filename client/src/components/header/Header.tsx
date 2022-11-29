@@ -37,7 +37,7 @@ const Header: FC<Props> = ({ sortingParam, onApplySorting, onCanselSorting, togg
 
   return (
     <div className={styles.header}>
-      <AppBar position="fixed" sx={{ background: 'rgb(57 57 57 / 25%)' }}>
+      <AppBar position="fixed" sx={{ background: '#a9b8c6' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <FormControl sx={{ flexDirection: 'row', gap: 2 }}>
             <FormLabel id="sorting-label">Sorting:</FormLabel>

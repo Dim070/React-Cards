@@ -1,4 +1,9 @@
 @import "src/assets/scss/_variable.scss";
+
+.header {
+  background-color: $header-bg;
+}
+
 .sorting {
   display: flex;
   color: $mine-shaft;
