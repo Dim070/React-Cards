@@ -23,6 +23,7 @@ module.exports = {
     },
     ecmaVersion: 2018,
     sourceType: 'module',
+    tsconfigRootDir: './',
     project: './tsconfig.json',
   },
   rules: {
