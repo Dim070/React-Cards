@@ -1,6 +1,6 @@
 @import "src/assets/scss/_variable.scss";
 
-.modal {
+.imageModal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -8,4 +8,12 @@
   background-color: $modal-bg;
   border: 2px solid $black;
   box-shadow: 0 0 25px $san-marino;
+}
+
+.modal {
+  @extend .imageModal;
+  background-color: $athens-gray;
+  width: 20rem;
+  height: 10rem;
+
 }

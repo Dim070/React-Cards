@@ -8,13 +8,13 @@ const usePagination: UsePaginationType = ({ contentPerPage, count }) => {
   const lastContentIndex = page * contentPerPage;
   const firstContentIndex = lastContentIndex - contentPerPage;
 
-  const setPageSAFE = (num: number) => {
+  const pageWillGo = (num: number) => {
     setPage(num);
   };
 
   return {
     totalPages: pageCount,
-    setPage: setPageSAFE,
+    pageWillGo,
     firstContentIndex,
     lastContentIndex,
     page

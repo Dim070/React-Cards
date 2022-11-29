@@ -8,13 +8,14 @@ import styles from './styles.module.scss';
 interface Props {
   children: ReactNode;
   isShowing: boolean;
+  imageModal?: boolean;
   close: () => void;
 }
 
-const Modal: FC<Props> = ({ children, isShowing, close }) => {
+const Modal: FC<Props> = ({ imageModal, children, isShowing, close }) => {
   return (
     <ModalWindow open={isShowing} onClose={close}>
-      <Box className={styles.modal}>{children}</Box>
+      <Box className={imageModal ? styles.imageModal : styles.modal}>{children}</Box>
     </ModalWindow>
   );
 };

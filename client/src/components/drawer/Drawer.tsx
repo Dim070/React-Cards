@@ -53,14 +53,6 @@ const TemporaryDrawer: FC<Props> = ({ toggle, onToggleList, onSortingClick, onAp
         onChange={onToggleList}
       />
     </Box>
-
-    // <div>
-    //   <React.Fragment>
-    //     <Drawer open={isShowing} onClose={close}>
-    //       {list()}
-    //     </Drawer>
-    //   </React.Fragment>
-    // </div>
   );
 };
 

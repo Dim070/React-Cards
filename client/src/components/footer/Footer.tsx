@@ -7,7 +7,10 @@ import { HEADER_FOOTER_BG } from '@root/constants/constants';
 
 import styles from './styles.module.scss';
 
-const Footer: FC<Omit<IUsePaginationReturn, 'firstContentIndex' | 'lastContentIndex'>> = ({ setPage, totalPages }) => {
+const Footer: FC<Omit<IUsePaginationReturn, 'firstContentIndex' | 'lastContentIndex'>> = ({
+  pageWillGo,
+  totalPages
+}) => {
   return (
     <div className={styles.footer}>
       <Box
@@ -20,7 +23,7 @@ const Footer: FC<Omit<IUsePaginationReturn, 'firstContentIndex' | 'lastContentIn
           backgroundColor: HEADER_FOOTER_BG
         }}
       >
-        <PaginationRounded totalPages={totalPages} setPage={setPage} />
+        <PaginationRounded totalPages={totalPages} pageWillGo={pageWillGo} />
       </Box>
     </div>
   );

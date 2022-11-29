@@ -9,10 +9,11 @@ import styles from './styles.module.scss';
 
 interface Props {
   card: ICard;
-  deleteCard: (item: number) => void;
+  deleteCard: (time: number) => void;
+  user: boolean;
 }
 
-const Card: FC<Props> = ({ card, deleteCard }) => {
+const Card: FC<Props> = ({ card, deleteCard, user }) => {
   const { image, filesize, timestamp, category } = card;
   const { correctDateFormat } = dateTransform(timestamp);
   const { correctImage } = imageTransform(image);
@@ -24,7 +25,7 @@ const Card: FC<Props> = ({ card, deleteCard }) => {
     <div className={styles.card}>
       <CardWrapper sx={{ position: 'relative' }}>
         <CardMedia component="img" alt="image" height="300" image={correctImage} />
-        <Trash className={styles.trash} onClick={onTrashClick} />
+        {user && <Trash className={styles.trash} onClick={onTrashClick} />}
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {category}

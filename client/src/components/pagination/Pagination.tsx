@@ -5,13 +5,13 @@ import { IUsePaginationReturn } from '@root/models/IUsePagination';
 
 const PaginationRounded: FC<Omit<IUsePaginationReturn, 'firstContentIndex' | 'lastContentIndex'>> = ({
   totalPages,
-  setPage
+  pageWillGo
 }) => {
   const changePage = useCallback(
     (event: React.ChangeEvent<unknown>, page: number) => {
-      setPage(page);
+      pageWillGo(page);
     },
-    [setPage]
+    [pageWillGo]
   );
 
   return (

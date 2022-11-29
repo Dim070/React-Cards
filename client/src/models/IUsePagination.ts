@@ -7,7 +7,7 @@ export interface IUsePaginationReturn {
   totalPages: number;
   firstContentIndex: number;
   lastContentIndex: number;
-  setPage: (page: number) => void;
+  pageWillGo: (page: number) => void;
 }
 
 export type UsePaginationType = (pagination: IUsePaginationProps) => IUsePaginationReturn;

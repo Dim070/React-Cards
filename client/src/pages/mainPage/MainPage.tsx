@@ -16,13 +16,23 @@ import styles from './styles.module.scss';
 
 interface Props {
   cards: ICard[];
+  userCards: (items: ICard[]) => void;
   isLoading: boolean;
   firstContentIndex: number;
   lastContentIndex: number;
   toggleList: boolean;
+  isUser: boolean;
 }
 
-const MainPage: FC<Props> = ({ isLoading, cards, firstContentIndex, lastContentIndex, toggleList }) => {
+const MainPage: FC<Props> = ({
+  userCards,
+  isUser,
+  isLoading,
+  cards,
+  firstContentIndex,
+  lastContentIndex,
+  toggleList
+}) => {
   const { error } = cardAPI.useFetchCatalogQuery(null);
 
   const { toggle: toggleModal, isShowing: isShowingModal } = useModal();
@@ -36,7 +46,14 @@ const MainPage: FC<Props> = ({ isLoading, cards, firstContentIndex, lastContentI
     [toggleModal]
   );
 
-  const deleteCard = useCallback(() => {}, []);
+  const deleteCard = useCallback(
+    (cardTime: number) => {
+      const cardsWithoutItem = [...cards].filter((item) => item.timestamp !== cardTime);
+      userCards(cardsWithoutItem);
+      localStorage.setItem('cardsWithoutItem', JSON.stringify(cardsWithoutItem));
+    },
+    [cards, userCards]
+  );
 
   return (
     <div className={styles.mainPage}>
@@ -63,10 +80,10 @@ const MainPage: FC<Props> = ({ isLoading, cards, firstContentIndex, lastContentI
         ) : (
           cards
             .slice(firstContentIndex, lastContentIndex)
-            .map((card) => <Card key={card.timestamp} card={card} deleteCard={deleteCard} />)
+            .map((card) => <Card user={isUser} key={card.timestamp} card={card} deleteCard={deleteCard} />)
         )}
       </div>
-      <Modal isShowing={isShowingModal} close={toggleModal}>
+      <Modal imageModal isShowing={isShowingModal} close={toggleModal}>
         <img className={styles.modalImage} src={modalImage} alt="card image" />
       </Modal>
     </div>

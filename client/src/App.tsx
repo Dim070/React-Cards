@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import MainPage from '@root/pages/mainPage/MainPage';
@@ -14,32 +14,46 @@ import { cardAPI } from './services/CardService';
 
 const App: FC = () => {
   const { data: cards, isLoading } = cardAPI.useFetchCatalogQuery(null);
-
+  const [userCards, setUserCards] = useState<ICard[] | null>(null);
   const [sortingParam, setSortingParam] = useState('');
   const [sortedCards, setSortedCards] = useState<ICard[]>([]);
   const [toggleList, setToggleList] = useState(false);
+  const [isUser, setIsUser] = useState(false);
   const navigate = useNavigate();
 
-  const { firstContentIndex, lastContentIndex, setPage, totalPages } = usePagination({
+  const { firstContentIndex, lastContentIndex, pageWillGo, totalPages } = usePagination({
     contentPerPage: NUMBER_OF_CARDS,
-    count: cards?.length || ERROR_NUMBER
+    count: userCards?.length || cards?.length || ERROR_NUMBER
   });
 
   const applySorting = useCallback(() => {
-    cards && sortingParam && setSortedCards(sortingData(cards || [], sortingParam));
+    (userCards || cards) && sortingParam && setSortedCards(sortingData(cards || [], sortingParam));
     navigate(`/${sortingParam}`);
-  }, [cards, navigate, sortingParam]);
+  }, [cards, navigate, sortingParam, userCards]);
 
   const cancelSorting = useCallback(() => {
-    cards && setSortedCards([]);
+    setSortedCards([]);
     navigate('/');
-  }, [cards, navigate]);
+  }, [navigate]);
+
+  useEffect(() => {
+    if (localStorage.getItem('cardsWithoutItem')) {
+      const setData = JSON.parse(localStorage.getItem('cardsWithoutItem') || '');
+      setUserCards(setData);
+    } else setUserCards(null);
+  }, []);
+
+  useEffect(() => {
+    localStorage.getItem('login') && setIsUser(JSON.parse(localStorage.getItem('login') || ''));
+  }, [isUser]);
 
   return (
     <div className={styles.appWrapper}>
       <Header
+        isUser={setIsUser}
         toggleList={setToggleList}
         sortingParam={setSortingParam}
+        isReturnCards={setUserCards}
         onApplySorting={applySorting}
         onCancelSorting={cancelSorting}
       />
@@ -48,8 +62,10 @@ const App: FC = () => {
           path={sortedCards.length > 0 ? `/${sortingParam}` : '/'}
           element={
             <MainPage
+              isUser={isUser}
+              userCards={setUserCards}
               toggleList={toggleList}
-              cards={sortedCards.length > 0 ? sortedCards : cards || []}
+              cards={sortedCards.length > 0 ? sortedCards : userCards || cards || []}
               isLoading={isLoading}
               firstContentIndex={firstContentIndex}
               lastContentIndex={lastContentIndex}
@@ -57,7 +73,7 @@ const App: FC = () => {
           }
         />
       </Routes>
-      <Footer setPage={setPage} totalPages={totalPages} />
+      <Footer pageWillGo={pageWillGo} totalPages={totalPages} />
     </div>
   );
 };

@@ -4,20 +4,21 @@ import { BASE_URL } from '@root/constants/constants';
 export const sortingData = (data: ICard[], sortingParam: string) => {
   return [...data].sort((firstCard, secondCard) => {
     if (firstCard && secondCard && sortingParam) {
-      if (sortingParam === 'date') {
-        return firstCard.timestamp - secondCard.timestamp;
-      }
-      if (sortingParam === 'category') {
-        if (firstCard.category < secondCard.category) {
-          return -1;
-        }
-        if (firstCard.category > secondCard.category) {
+      switch (sortingParam) {
+        case 'date':
+          return firstCard.timestamp - secondCard.timestamp;
+        case 'category':
+          if (firstCard.category < secondCard.category) {
+            return -1;
+          }
+          if (firstCard.category > secondCard.category) {
+            return 1;
+          }
+          return 0;
+        case 'size':
+          return firstCard.filesize - secondCard.filesize;
+        default:
           return 1;
-        }
-        return 0;
-      }
-      if (sortingParam === 'size') {
-        return firstCard.filesize - secondCard.filesize;
       }
     }
     return 1;
