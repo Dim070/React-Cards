@@ -22,7 +22,7 @@ const PaginationRounded: FC<Omit<IUsePaginationReturn, 'firstContentIndex' | 'la
         variant="text"
         shape="rounded"
         onChange={changePage}
-        sx={{ '& .MuiPagination-ul': { justifyContent: 'center' } }}
+        sx={{ '& .MuiPagination-ul': { justifyContent: 'center', p: 1 } }}
       />
     </Stack>
   );

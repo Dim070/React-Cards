@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import TreeItem from '@mui/lab/TreeItem';
 
 import { ICard } from '@root/models/ICard';
@@ -35,4 +35,4 @@ const TreeList: FC<Props> = ({ card, index, getImage }) => {
   );
 };
 
-export default TreeList;
+export default memo(TreeList);

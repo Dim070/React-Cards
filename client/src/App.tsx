@@ -30,7 +30,7 @@ const App: FC = () => {
     navigate(`/${sortingParam}`);
   }, [cards, navigate, sortingParam]);
 
-  const canselSorting = useCallback(() => {
+  const cancelSorting = useCallback(() => {
     cards && setSortedCards([]);
     navigate('/');
   }, [cards, navigate]);
@@ -41,28 +41,15 @@ const App: FC = () => {
         toggleList={setToggleList}
         sortingParam={setSortingParam}
         onApplySorting={applySorting}
-        onCanselSorting={canselSorting}
+        onCancelSorting={cancelSorting}
       />
       <Routes>
         <Route
-          path="/"
+          path={sortedCards.length > 0 ? `/${sortingParam}` : '/'}
           element={
             <MainPage
               toggleList={toggleList}
-              cards={cards || []}
-              isLoading={isLoading}
-              firstContentIndex={firstContentIndex}
-              lastContentIndex={lastContentIndex}
-            />
-          }
-        />
-
-        <Route
-          path={`/${sortingParam}`}
-          element={
-            <MainPage
-              toggleList={toggleList}
-              cards={sortedCards}
+              cards={sortedCards.length > 0 ? sortedCards : cards || []}
               isLoading={isLoading}
               firstContentIndex={firstContentIndex}
               lastContentIndex={lastContentIndex}

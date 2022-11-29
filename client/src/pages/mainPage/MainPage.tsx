@@ -9,7 +9,7 @@ import { ICard } from '@root/models/ICard';
 import TreeList from '@root/components/treeList/TreeList';
 import useModal from '@root/hooks/useModal';
 import Modal from '@root/components/modal/Modal';
-import spinner from '@images/spinner.gif';
+import loading from '@images/loading.gif';
 import { cardAPI } from '@root/services/CardService';
 
 import styles from './styles.module.scss';
@@ -36,14 +36,14 @@ const MainPage: FC<Props> = ({ isLoading, cards, firstContentIndex, lastContentI
     [toggleModal]
   );
 
-  const deleteCard = useCallback((item: any) => {}, []);
+  const deleteCard = useCallback(() => {}, []);
 
   return (
     <div className={styles.mainPage}>
       <div className={styles.container}>
         {isLoading && (
           <h1>
-            <img src={spinner} alt="loading..." />
+            <img src={loading} alt="loading..." />
           </h1>
         )}
         {error && <h1>Произошла ошибка загрузки данных</h1>}
