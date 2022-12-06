@@ -16,21 +16,13 @@ module.exports = merge(common, {
     removeEmptyChunks: false,
     splitChunks: false
   },
-  // devServer: {
-  //   hot: true,
-  //   historyApiFallback: {
-  //     index: '/'
-  //   },
-  //   port: 8002,
-  //   open: true,
-  //   proxy: {
-  //     '/api': {
-  //       target: process.env.API_URL,
-  //       secure: false,
-  //       changeOrigin: true
-  //     }
-  //   }
-  // },
+  devServer: {
+    hot: true,
+    historyApiFallback: {
+      index: '/'
+    },
+    open: true,
+  },
   devtool: 'eval-cheap-module-source-map',
   plugins: [
     new Dotenv(),
