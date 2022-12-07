@@ -27,14 +27,13 @@ import styles from './styles.module.scss';
 
 interface Props {
   sortingParam: (value: string) => void;
-  onApplySorting: () => void;
   onCancelSorting: () => void;
   toggleList: (value: boolean) => void;
   isUser: (value: boolean) => void;
   isReturnCards: (value: null) => void;
 }
 
-const Header: FC<Props> = ({ isReturnCards, isUser, sortingParam, onApplySorting, onCancelSorting, toggleList }) => {
+const Header: FC<Props> = ({ isReturnCards, isUser, sortingParam, onCancelSorting, toggleList }) => {
   const [login, setLogin] = useState('');
   const [user, setUser] = useState<string | null>('');
 
@@ -61,7 +60,7 @@ const Header: FC<Props> = ({ isReturnCards, isUser, sortingParam, onApplySorting
   }, []);
 
   const sendLogin = useCallback(() => {
-    localStorage.setItem('login', login);
+    localStorage.setItem('login', JSON.stringify(login));
     setUser(login);
     isUser(true);
     loginModalToggle();
@@ -98,9 +97,6 @@ const Header: FC<Props> = ({ isReturnCards, isUser, sortingParam, onApplySorting
                 <FormControlLabel value="date" control={<Radio />} label="Date" />
                 <FormControlLabel value="category" control={<Radio />} label="Category" />
                 <FormControlLabel value="size" control={<Radio />} label="Size" />
-                <Button onClick={onApplySorting} color="secondary" variant="text" sx={{ border: 0.5, mr: 1 }}>
-                  Apply
-                </Button>
                 <Button onClick={onCancelSorting} color="error" variant="text" sx={{ border: 0.5 }}>
                   Cancel
                 </Button>
@@ -135,7 +131,6 @@ const Header: FC<Props> = ({ isReturnCards, isUser, sortingParam, onApplySorting
             >
               <TemporaryDrawer
                 toggle={asideMenuToggle}
-                onApplySorting={onApplySorting}
                 onCancelSorting={onCancelSorting}
                 onToggleList={onToggleList}
                 onSortingClick={onSortingClick}

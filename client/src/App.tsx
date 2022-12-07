@@ -26,13 +26,14 @@ const App: FC = () => {
     count: userCards?.length || cards?.length || ERROR_NUMBER
   });
 
-  const applySorting = useCallback(() => {
-    (userCards || cards) && sortingParam && setSortedCards(sortingData(cards || [], sortingParam));
+  useEffect(() => {
+    sortingParam && setSortedCards(sortingData(cards || [], sortingParam));
     navigate(`/${sortingParam}`);
-  }, [cards, navigate, sortingParam, userCards]);
+  }, [cards, navigate, sortingParam]);
 
   const cancelSorting = useCallback(() => {
     setSortedCards([]);
+    setSortingParam('');
     navigate('/');
   }, [navigate]);
 
@@ -54,18 +55,17 @@ const App: FC = () => {
         toggleList={setToggleList}
         sortingParam={setSortingParam}
         isReturnCards={setUserCards}
-        onApplySorting={applySorting}
         onCancelSorting={cancelSorting}
       />
       <Routes>
         <Route
-          path={sortedCards.length > 0 ? `/${sortingParam}` : '/'}
+          path={sortingParam ? `/${sortingParam}` : '/'}
           element={
             <MainPage
               isUser={isUser}
               userCards={setUserCards}
               toggleList={toggleList}
-              cards={sortedCards.length > 0 ? sortedCards : userCards || cards || []}
+              cards={sortingParam ? sortedCards : userCards || cards || []}
               isLoading={isLoading}
               firstContentIndex={firstContentIndex}
               lastContentIndex={lastContentIndex}

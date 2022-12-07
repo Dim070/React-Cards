@@ -12,12 +12,11 @@ import IconButton from '@mui/material/IconButton';
 interface Props {
   onToggleList: (event: SyntheticEvent<Element, Event>, checked: boolean) => void;
   onSortingClick: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
-  onApplySorting: () => void;
   onCancelSorting: () => void;
   toggle: () => void;
 }
 
-const TemporaryDrawer: FC<Props> = ({ toggle, onToggleList, onSortingClick, onApplySorting, onCancelSorting }) => {
+const TemporaryDrawer: FC<Props> = ({ toggle, onToggleList, onSortingClick, onCancelSorting }) => {
   return (
     <Box sx={{ width: 200, ml: 1 }} role="presentation">
       <List>
@@ -37,9 +36,6 @@ const TemporaryDrawer: FC<Props> = ({ toggle, onToggleList, onSortingClick, onAp
           <ListItem disablePadding>
             <FormControlLabel value="size" control={<Radio />} label="Size" />
           </ListItem>
-          <Button onClick={onApplySorting} color="secondary" variant="text" sx={{ border: 0.5, mr: 1 }}>
-            Apply
-          </Button>
           <Button onClick={onCancelSorting} color="error" variant="text" sx={{ border: 0.5 }}>
             Cansel
           </Button>
